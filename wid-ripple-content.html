@@ -1,0 +1,112 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../neon-animation/neon-animation.html">
+<link rel="import" href="../neon-animation/neon-animations.html">
+
+
+<dom-module id="wid-ripple-content">
+  <style>
+
+    :host {
+      display: block;
+      overflow: hidden;
+    }
+
+    #placeholder {
+      opacity: 0;
+      background-color: var(--interest-card-background-color);
+    }
+
+    #arrow-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: var(--wid-card-dialog-arrow-back-margin, 20px);
+      cursor: pointer;
+    }
+
+  </style>
+  <template>
+
+    <div id="placeholder" class="fit"></div>
+
+    <div id="container">
+
+      <content></content>
+      <iron-icon id="arrow-back" icon="arrow-back" on-tap="_onArrowTap"></iron-icon>
+
+    </div>
+
+  </template>
+</dom-module>
+
+<script>
+(function() {
+  Polymer({
+    is: 'wid-ripple-content',
+
+    behaviors: [
+      Polymer.NeonSharedElementAnimatableBehavior
+    ],
+
+    properties: {
+      routeUrl: {
+        type: String
+      },
+
+      animationConfig: {
+        value: function() {
+          return {
+            'entry': [{
+              name: 'ripple-animation',
+              id: 'ripple',
+              toPage: this
+            }, {
+              name: 'fade-out-animation',
+              node: this.$.placeholder,
+              timing: {
+                delay: 200
+              }
+            }, {
+              name: 'fade-in-animation',
+              node: this.$.container,
+              timing: {
+                delay: 50
+              }
+            }],
+
+            'exit': [{
+              name: 'opaque-animation',
+              node: this.$.placeholder
+            }, {
+              name: 'fade-out-animation',
+              node: this.$.container,
+              timing: {
+                duration: 0
+              }
+            }, {
+              name: 'reverse-ripple-animation',
+              id: 'reverse-ripple',
+              fromPage: this
+            }]
+          };
+        }
+      },
+
+      sharedElements: {
+        value: function() {
+          return {
+            'ripple': this.$.placeholder,
+            'reverse-ripple': this.$.placeholder
+          };
+        }
+      }
+    },
+
+    _onArrowTap: function () {
+      this.fire('interest-card-closing');
+    }
+  });
+})();
+</script>

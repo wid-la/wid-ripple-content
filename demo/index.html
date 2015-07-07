@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>wid-ripple-content Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../paper-styles/paper-styles.html">
+    <link rel="import" href="../wid-ripple-content.html">
+    <link rel="import" href="../wid-ripple-list.html">
+  </head>
+  <body class="fullbleed">
+    
+    <style is="custom-style">
+      #list, #card {
+        --interest-card-background-color: blue;
+      }
+
+    </style>
+    <p>An example of <code>&lt;wid-ripple-card&gt;</code>:</p>
+    <template is="dom-bind" id="app">
+  
+      <neon-animated-pages class="fit" selected="[[currentCard]]">
+
+        <wid-ripple-list id="list">
+
+          <div class="fit layout vertical center">
+
+            <h2>Checkout our interests</h2>
+            <div class="flex layout horizontal center">
+              <button on-tap="_onTap">Go</button>
+            </div>
+
+          </div>
+
+        </wid-ripple-list>
+        <wid-ripple-content id="card" on-interest-card-closing="_onClose">
+        
+          <div id="card-content" class="fit layout vertical center">
+            <h2>Hello World</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+
+        </wid-ripple-content>
+
+      </neon-animated-pages>
+
+    </template>
+    <script> 
+      
+      var app = document.querySelector('#app');
+      app.currentCard = 0;
+
+      app._onClose = function () {
+        app.currentCard = 0;
+      };
+
+      app._onTap = function () {
+        app.currentCard = 1;
+      };
+      
+    </script>
+
+  </body>
+</html>
