@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <div class="fit layout vertical center">
 
-            <h2>Checkout our interests</h2>
+            <h2>Click below</h2>
             <div class="flex layout horizontal center">
               <button on-tap="_onTap">Go</button>
             </div>
@@ -43,7 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>
 
         </wid-ripple-list>
-        <wid-ripple-content id="card" on-interest-card-closing="_onClose">
+        <wid-ripple-content id="card" on-ripple-content-tap="_onClose">
         
           <div id="card-content" class="fit layout vertical center">
             <h2>Hello World</h2>
@@ -63,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </template>
     <script> 
-      
+
       var app = document.querySelector('#app');
       app.currentCard = 0;
 

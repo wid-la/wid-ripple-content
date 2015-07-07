@@ -2,7 +2,31 @@
 <link rel="import" href="../neon-animation/neon-animation.html">
 <link rel="import" href="../neon-animation/neon-animations.html">
 
+<!--
+This element wraps a list of element. Whenever a tap occured on this element.
+The animation configuration is updated. If the parents (eg. `neon-animated-pages`)
+changes of page. Than a ripple animation is triggered to display the `wid-ripple-content`.
+On close of this new element a reverse-ripple-animation is played.
 
+Example:
+
+    <wid-ripple-list>
+
+      <div class="fit layout vertical center">
+
+        <h2>Click below</h2>
+        <div class="flex layout horizontal center">
+          <button on-tap="_onTap">Go</button>
+        </div>
+
+      </div>
+
+    </wid-ripple-list>
+
+@group Wid
+@element wid-ripple-list
+@demo demo/index.html
+-->
 <dom-module id="wid-ripple-list">
   <style>
 
@@ -40,6 +64,11 @@
     ],
 
     properties: {
+
+      /**
+       * Animation configuration. Cf. `neon-animation`
+       * @type {Object}
+       */
       animationConfig: {
         value: function() {
           return {
@@ -65,6 +94,10 @@
         }
       },
 
+      /**
+       * Shared elements configuration. Cf. `neon-animation`
+       * @type {Object}
+       */
       sharedElements: {
         value: function() {
           return {
@@ -79,6 +112,11 @@
       tap: '_onTap'
     },
 
+    /**
+     * When a tap occured on this element. We update the shared elements with the
+     * event's target.
+     * @param  {CustomEvent} event The tap event.
+     */
     _onTap: function(event) {
       this.sharedElements = {
         'ripple': event.target,

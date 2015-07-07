@@ -4,7 +4,31 @@
 <link rel="import" href="../neon-animation/neon-animation.html">
 <link rel="import" href="../neon-animation/neon-animations.html">
 
+<!-- This import is needed to correctly see the doc with `polyserve` -->
+<link rel="import" href="wid-ripple-list.html">
 
+<!--
+This element wraps some content. If the parents (eg. `neon-animated-pages`)
+changes of page. Than a ripple animation is triggered to display this element.
+On close a reverse-ripple-animation is played to display the previous element.
+
+Example:
+
+    <wid-ripple-content on-interest-card-closing="_onClose">
+        
+      <div id="card-content" class="fit layout vertical center">
+        <h2>Hello World</h2>
+        <p>
+          Lorem ipsum ...
+        </p>
+      </div>
+
+    </wid-ripple-content>
+
+@group Wid
+@element wid-ripple-content
+@demo demo/index.html
+-->
 <dom-module id="wid-ripple-content">
   <style>
 
@@ -51,10 +75,11 @@
     ],
 
     properties: {
-      routeUrl: {
-        type: String
-      },
 
+      /**
+       * Animation configuration. Cf. `neon-animation`
+       * @type {Object}
+       */
       animationConfig: {
         value: function() {
           return {
@@ -94,6 +119,10 @@
         }
       },
 
+      /**
+       * Shared elements configuration. Cf. `neon-animation`
+       * @type {Object}
+       */
       sharedElements: {
         value: function() {
           return {
@@ -104,8 +133,17 @@
       }
     },
 
+    /**
+     * The `ripple-content-tap` event is fired whenever the user clicks on this component.
+     *
+     * @event ripple-content-tap
+     */
+
+    /**
+     * We fire an event when this component is tapped.
+     */
     _onArrowTap: function () {
-      this.fire('interest-card-closing');
+      this.fire('ripple-content-tap');
     }
   });
 })();
