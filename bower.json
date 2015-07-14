@@ -26,7 +26,8 @@
     "neon-animation": "PolymerElements/neon-animation#~1.0.5",
     "iron-icon": "PolymerElements/iron-icon#~1.0.2",
     "iron-icons": "PolymerElements/iron-icons#~1.0.3",
-    "paper-styles": "PolymerElements/paper-styles#~1.0.7"
+    "paper-styles": "PolymerElements/paper-styles#~1.0.7",
+    "wid-ripple-transition-behavior": "wid-la/wid-ripple-transition-behavior#~1.0.11"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

@@ -3,6 +3,7 @@
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../neon-animation/neon-animation.html">
 <link rel="import" href="../neon-animation/neon-animations.html">
+<link rel="import" href="../wid-ripple-transition-behavior/wid-ripple-transition-behavior.html">
 
 <!-- This import is needed to correctly see the doc with `polyserve` -->
 <link rel="import" href="wid-ripple-list.html">
@@ -15,7 +16,7 @@ On close a reverse-ripple-animation is played to display the previous element.
 Example:
 
     <wid-ripple-content on-interest-card-closing="_onClose">
-        
+
       <div id="card-content" class="fit layout vertical center">
         <h2>Hello World</h2>
         <p>
@@ -55,7 +56,7 @@ Example:
 
     <div id="placeholder" class="fit"></div>
 
-    <div id="container">
+    <div id="content">
 
       <content></content>
       <iron-icon id="arrow-back" icon="arrow-back" on-tap="_onArrowTap"></iron-icon>
@@ -71,54 +72,10 @@ Example:
     is: 'wid-ripple-content',
 
     behaviors: [
-      Polymer.NeonSharedElementAnimatableBehavior
+      Polymer.WidRippleTransitionBehavior
     ],
 
     properties: {
-
-      /**
-       * Animation configuration. Cf. `neon-animation`
-       * @type {Object}
-       */
-      animationConfig: {
-        value: function() {
-          return {
-            'entry': [{
-              name: 'ripple-animation',
-              id: 'ripple',
-              toPage: this
-            }, {
-              name: 'fade-out-animation',
-              node: this.$.placeholder,
-              timing: {
-                delay: 200
-              }
-            }, {
-              name: 'fade-in-animation',
-              node: this.$.container,
-              timing: {
-                delay: 50
-              }
-            }],
-
-            'exit': [{
-              name: 'opaque-animation',
-              node: this.$.placeholder
-            }, {
-              name: 'fade-out-animation',
-              node: this.$.container,
-              timing: {
-                duration: 0
-              }
-            }, {
-              name: 'reverse-ripple-animation',
-              id: 'reverse-ripple',
-              fromPage: this
-            }]
-          };
-        }
-      },
-
       /**
        * Shared elements configuration. Cf. `neon-animation`
        * @type {Object}

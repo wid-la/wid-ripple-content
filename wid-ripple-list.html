@@ -2,6 +2,8 @@
 <link rel="import" href="../neon-animation/neon-animation.html">
 <link rel="import" href="../neon-animation/neon-animations.html">
 
+<link rel="import" href="../wid-ripple-transition-behavior/wid-ripple-transition-behavior.html">
+
 <!--
 This element wraps a list of element. Whenever a tap occured on this element.
 The animation configuration is updated. If the parents (eg. `neon-animated-pages`)
@@ -45,7 +47,7 @@ Example:
 
     <div id="placeholder" class="fit"></div>
 
-    <div id="container">
+    <div id="content">
 
       <content></content>
 
@@ -60,40 +62,10 @@ Example:
     is: 'wid-ripple-list',
 
     behaviors: [
-      Polymer.NeonSharedElementAnimatableBehavior
+      Polymer.WidRippleTransitionBehavior
     ],
 
     properties: {
-
-      /**
-       * Animation configuration. Cf. `neon-animation`
-       * @type {Object}
-       */
-      animationConfig: {
-        value: function() {
-          return {
-            'entry': [{
-              name: 'reverse-ripple-animation',
-              id: 'reverse-ripple',
-              toPage: this
-            }],
-
-            'exit': [{
-              name: 'fade-out-animation',
-              node: this.$.container,
-              timing: {
-                delay: 150,
-                duration: 0
-              }
-            }, {
-              name: 'ripple-animation',
-              id: 'ripple',
-              fromPage: this
-            }]
-          };
-        }
-      },
-
       /**
        * Shared elements configuration. Cf. `neon-animation`
        * @type {Object}
